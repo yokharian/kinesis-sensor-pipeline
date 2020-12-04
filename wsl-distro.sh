@@ -1,12 +1,11 @@
 sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt dist-upgrade -y
 sudo apt-get install -y git nodejs wget vim # curl 
 
+curl -L https://npmjs.org/install.sh | sudo sh #npm
+
 #beautify
 sudo apt install zsh -y
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
-
-
-
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -
 
 
 # Install Dockers package dependencies.
@@ -34,7 +33,7 @@ sudo add-apt-repository \
 sudo apt-get update -y
 
 # Install the latest version of Docker CE.
-sudo apt-get install docker-ce docker-ce-cli containerd.io -Y
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 
 # Allow your user to access the Docker CLI without needing root access.
 sudo usermod -aG docker $USER
