@@ -23,9 +23,9 @@ Set-Theme Paradox'
     Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
     choco feature enable -n allowGlobalConfirmation
     # Needed
-    choco install wsl git docker-desktop microsoft-windows-terminal winrar vscode toggl 
+    choco install wsl git docker-desktop microsoft-windows-terminal winrar vscode toggl microsoft-teams
     # useful
-    choco install postman mongodb-compass filezilla cpu-z.portable googledrive
+    choco install postman mongodb-compass filezilla cpu-z.portable googledrive firefox
     # optional
     choco install discord whatsapp spotify 
 
@@ -35,8 +35,7 @@ Set-Theme Paradox'
     $msgBoxInputRs = [System.Windows.MessageBoxResult]::Show('Would you like to restart now?','Game  input','YesNoCancel','Error')
     switch($msgBoxInputRs){
         'Yes'{
-            shutdown -r
-            ## Restart-Computer -delay 15
+            Restart-Computer -delay 15
         }'No'{
             [System.Windows.MessageBox]::Show('Remember to Restart')
         }
@@ -45,6 +44,6 @@ Set-Theme Paradox'
   wsl --set-default-version 2
   [System.Windows.MessageBox]::Show("instala Debian desde la microsoft Store")
     # then
-  wsl --exec bash .\wsl-distro.sh
+    # wsl --exec bash .\wsl-distro.sh
   }
 }
