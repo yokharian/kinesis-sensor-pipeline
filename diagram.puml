@@ -1,0 +1,40 @@
+@startuml Kinesis Sensor Pipeline
+!theme plain
+skinparam componentStyle rectangle
+
+cloud "AWS Cloud" as aws {
+    component "Kinesis\nData Streams" as kinesis
+    component "Kinesis\nFirehose" as firehose
+    component "Lambda\nFunctions" as lambda
+    component "Step\nFunctions" as stepfn
+    component "S3\nData Lake" as s3
+    database "Timestream/\nInfluxDB" as tsdb
+    component "CloudWatch\n+ Sentry" as cw
+}
+
+node "Factory Floor" as factory {
+    component "500+ IoT\nSensors" as sensor
+    component "50+ RPi\nGateways" as rpi
+    database "SQLite\n(local buffer)" as sqlite
+}
+
+actor "BI Tools\n(Grafana/PowerBI)" as bi
+
+sensor -> rpi: Readings\nevery 5 min
+rpi -> kinesis: Send data\n(when online)
+rpi <-> sqlite: Buffer data\n(when offline)
+sqlite -> kinesis: Sync buffered data\n(on reconnection)
+
+kinesis -> firehose: Stream data
+firehose -> s3: Batch write
+s3 -> lambda: Trigger processing
+lambda -> lambda: Parse, compute\ncosts, validate
+lambda -> tsdb: Store processed data
+
+stepfn -> s3: Orchestrate ETL\n(external data)
+stepfn -> tsdb: Load transformed data
+
+tsdb --> bi: Query analytics
+lambda --> cw: Logs & metrics
+
+@enduml
