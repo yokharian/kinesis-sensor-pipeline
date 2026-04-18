@@ -1,6 +1,6 @@
 # Kinesis Sensor Pipeline
 
-![Architecture](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/yokharian/kinesis-sensor-pipeline/main/diagram.puml)
+![Architecture](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/yokharian/kinesis-sensor-pipeline/master/diagram.puml)
 
 Serverless pipeline on AWS Kinesis that ingests, processes, and computes electricity costs from 500+ industrial IoT sensors with local buffering for network resilience.
 
