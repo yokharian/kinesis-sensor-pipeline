@@ -30,9 +30,6 @@ Serverless pipeline on AWS Kinesis that ingests, processes, and computes electri
 - S3 data lake with time-series query layer
 - CloudWatch + Sentry monitoring
 
-## Architecture
-
-See [diagram.puml](./diagram.puml) for system architecture.
 
 ## References
 
